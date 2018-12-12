@@ -24,7 +24,7 @@ app.post('/build-product', (req, res) => {
 });
 
 //Start Server
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.NODE_ENV || 3000, function(){
   console.log('Server is started on port 3000');
 });
 
