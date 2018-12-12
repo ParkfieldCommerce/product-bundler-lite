@@ -19,7 +19,7 @@ app.get('/status', (req,res) =>{
 });
 
 app.post('/build-product', (req, res) => {
-  res.send(req.body.response);
+  res.send(req.body.products);
   console.log('Req', req);
 });
 
