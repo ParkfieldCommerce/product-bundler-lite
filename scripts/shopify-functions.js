@@ -71,6 +71,20 @@ async function createProduct(data) {
 async function deleteBundle(lineItems) {
   console.log(productIdWithVariantId);
   console.log(lineItems);
+  lineItems.forEach(async (item) => {
+    const vendor = item.vendor;
+    const productId = item.product_id;
+    if (vendor.indexOf('R1 Bundle') > -1) {
+      deleteProduct(productId);
+    }
+  });
+}
+
+function deleteProduct(productId){
+  shopify.product.delete(productId)
+  .catch(err => {
+    console.log(err);
+  });
 }
 
 module.exports.createBundle = createBundle;
