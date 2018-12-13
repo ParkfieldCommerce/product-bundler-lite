@@ -14,6 +14,7 @@ async function createBundle(items) {
   const stack = items.stack;
   const sku = items.sku;
   const price = items.price;
+  const image = items.imgSrc;
   const products = items.products;
   const productsLen = products.length;
   let productWithVariants = [];
@@ -32,6 +33,9 @@ async function createBundle(items) {
       variants: [{
         "price": price,
         "sku": sku
+      }],
+      images: [{
+        "src": image
       }]
     });
     return bundle;
