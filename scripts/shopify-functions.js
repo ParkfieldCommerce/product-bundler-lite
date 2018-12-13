@@ -10,6 +10,8 @@ const shopify = new Shopify({
   password: process.env.SHOP_PASSWORD || SHOP_PASSWORD
 });
 
+let productIdWithVariantId = []
+
 async function createBundle(items) {
   const stack = items.stack;
   const sku = items.sku;
@@ -23,7 +25,12 @@ async function createBundle(items) {
       title: products[i].productTitle,
       variant: products[i].variantName
     };
+    let prodData = {
+      productId: products[i].productId,
+      variantId: products[i].variantId
+    };
     productWithVariants.push(obj);
+    productIdWithVariantId.push(prodData);
   }
   try {
     let bundle = await createProduct({
@@ -62,6 +69,7 @@ async function createProduct(data) {
 }
 
 async function deleteBundle(lineItems) {
+  console.log(productIdWithVariantId);
   console.log(lineItems);
 }
 
