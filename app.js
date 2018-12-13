@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+const dotenv = require('dotenv').config;
 const shopifyRouter = require('./routes/shopify-api');
 
 const app = express();
@@ -10,18 +11,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
-// app.use('/shopify', shopifyRouter);
-
 app.get('/status', (req,res) =>{
   res.send('We are Live');
   res.end();
 });
 
-app.post('/build-product', (req, res) => {
-  res.send(req.body.products);
-  console.log('Req', req);
-});
+app.use(shopifyRouter);
 
 //Start Server
 app.listen(process.env.NODE_ENV || 3000, function(){
