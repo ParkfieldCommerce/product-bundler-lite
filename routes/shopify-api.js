@@ -9,4 +9,9 @@ router.post('/build-product', async (req, res) => {
   res.send(JSON.stringify(createdProduct));
 });
 
+router.post('/order-created', async (req, res) => {
+  console.log('================Order Created!================');
+  console.log(req);
+});
+
 module.exports = router;
