@@ -66,3 +66,4 @@ async function deleteBundle(lineItems) {
 }
 
 module.exports.createBundle = createBundle;
+module.exports.deleteBundle = deleteBundle;
