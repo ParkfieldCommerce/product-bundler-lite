@@ -6,7 +6,7 @@ router.post('/build-product', async (req, res) => {
   console.log('==============Building Product!==============');
   const items = req.body;
   const createdProduct = await ShopifyFunctions.createBundle(items);
-  res.sendStatus(createdProduct);
+  res.json(createdProduct);
 });
 
 module.exports = router;
