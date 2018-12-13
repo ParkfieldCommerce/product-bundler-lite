@@ -29,6 +29,7 @@ async function createBundle(items) {
     let bundle = await createProduct({
       title: stack+" Bundle",
       product_type: "Bundled Stack",
+      vendor: "R1 Bundle",
       body_html: JSON.stringify(productWithVariants),
       variants: [{
         "price": price,
@@ -58,6 +59,10 @@ async function createProduct(data) {
   } catch (e) {
     console.log('Error creating a product');
   }
+}
+
+async function deleteBundle(lineItems) {
+  console.log(lineItems);
 }
 
 module.exports.createBundle = createBundle;
