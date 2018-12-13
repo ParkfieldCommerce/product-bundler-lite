@@ -11,7 +11,7 @@ router.post('/build-product', async (req, res) => {
 
 router.post('/order-created', async (req, res) => {
   console.log('================Order Created!================');
-  console.log(req);
+  console.log(req.body);
 });
 
 module.exports = router;
