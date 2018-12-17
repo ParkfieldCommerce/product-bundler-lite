@@ -12,7 +12,7 @@ router.post('/build-product', async (req, res) => {
 router.post('/order-created', async (req, res) => {
   console.log('================Order Created!================');
   const lineItems = req.body.line_items;
-  console.table(lineItems)
+  const updateInventory = await ShopifyFunctions.updateInventory(lineItems);
   const deletedProduct = await ShopifyFunctions.deleteBundle(lineItems);
   res.end();
 });

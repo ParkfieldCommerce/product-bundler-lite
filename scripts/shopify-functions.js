@@ -79,5 +79,36 @@ function deleteProduct(productId){
   });
 }
 
+async function updateInventory(lineItems) {
+  lineItems.forEach(async (item) => {
+    let location = await shopify.location.list();
+    let locationId = location[0].id;
+    let getVariants = [];
+    const properties = item.properties;
+    const propertiesLen = properties.length;
+    const quantity = item.quantity;
+    for (let i = 0; i < propertiesLen; i++) {
+      if (properties[i].name.indexOf('_') > -1) {
+        let variantId = properties[i].value;
+        getVariants.push(await shopify.productVariant.get(variantId));
+      }
+    }
+    for (let i = 0; i < getVariants.length; i++) {
+      let inventoryId = getVariants[i].inventory_item_id;
+      let inventoryQty = getVariants[i].inventory_quantity;
+      shopify.inventoryLevel.adjust({
+        location_id: locationId,
+        inventory_item_id: inventoryId,
+        available_adjustment: quantity*-1
+      }).then(success => {
+        console.log(`${success.inventory_item_id} inventory updated`);
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+  });
+}
+
 module.exports.createBundle = createBundle;
 module.exports.deleteBundle = deleteBundle;
+module.exports.updateInventory = updateInventory;
