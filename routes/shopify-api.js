@@ -12,8 +12,8 @@ router.post('/build-product', async (req, res) => {
 router.post('/order-created', async (req, res) => {
   console.log('================Order Created!================');
   const lineItems = req.body.line_items;
+  console.table(lineItems)
   const deletedProduct = await ShopifyFunctions.deleteBundle(lineItems);
-  console.log(deletedProduct);
   res.end();
 });
 
