@@ -1,8 +1,8 @@
 const Shopify = require('shopify-api-node');
 
-const SHOP_NAME = 'rule-1-proteins.myshopify.com';
-const SHOP_API_KEY = 'b26ca5f03724c92805917e79fe063697';
-const SHOP_PASSWORD = '56efbf2275ff618cab490ca3f218b6fb';
+const SHOP_NAME = 'SHOPNAME';
+const SHOP_API_KEY = 'APIKEY';
+const SHOP_PASSWORD = 'SHOP_PASSWORD';
 
 const shopify = new Shopify({
   shopName: process.env.SHOP_NAME || SHOP_NAME,
